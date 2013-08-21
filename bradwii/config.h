@@ -23,6 +23,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "options.h"
 
+// Pre initialization delay, to allow easy battery insertion on
+// smaller aircrafts. Value in seconds. Led will blink times the
+// number set here.
+#define PRE_INIT_DELAY 3
+
 // Choose your control board:
 //#define CONTROL_BOARD_TYPE CONTROL_BOARD_HK_MULTIWII_PRO_2
 //#define CONTROL_BOARD_TYPE CONTROL_BOARD_HK_MULTIWII_328P

@@ -119,8 +119,18 @@ int main(void)
    lib_timers_init();
    lib_i2c_init();
 
-   // pause a moment before initializing everything. To make sure everything is powered up
-   lib_timers_delaymilliseconds(100);
+   #ifdef PRE_INIT_DELAY && PRE_INIT_DELAY > 0
+      // Delay gyro && acc init
+      for(int i=0; i < PRE_INIT_DELAY; i++) {
+         lib_digitalio_setoutput(LED1_OUTPUT, DIGITALON);
+         lib_timers_delaymilliseconds(200);
+         lib_digitalio_setoutput(LED1_OUTPUT, DIGITALOFF);
+         lib_timers_delaymilliseconds(800);
+      }
+   #else
+      // pause a moment before initializing everything. To make sure everything is powered up
+      lib_timers_delaymilliseconds(100);
+   #endif
    
    // initialize all other modules
    initrx();
